@@ -11,6 +11,7 @@ import pikachu from './img/pikachu-2.svg';
 import meow from './img/meowth.svg';
 import pidgey from './img/pidgey.svg';
 import squirtle from './img/squirtle.svg';
+import pokeball from './img/pokeball.svg';
 import './App.css';
 
 
@@ -24,6 +25,8 @@ const pokemons = [{'img':abra,'name':'Abra','price':'30'}
                 {'img':pidgey,'name':'Pidgey','price':'20'},
                 {'img':squirtle,'name':'Squirtle','price':'50'}
                 ]
+
+
 
 class MyCard extends Component{
     constructor(props){
@@ -64,18 +67,39 @@ class CardList extends Component{
  }
 }
 
+function issearch(searchterm){
+  return function(item){
+    return item.name.toLowerCase().includes(searchterm.toLowerCase())
+  }
+}
+
 
 class PokeCard extends Component{
   constructor(props){
      super(props);
+     this.state = {results:this.props.pokemons,search:''}
+     this.searchchange = this.searchchange.bind(this);
+  }
+
+  searchchange(event){
+    var newresult = pokemons.filter(issearch(event.target.value))
+    this.setState({
+      results:newresult,
+      search:event.target.value
+    })
   }
 
   render(){
+    var results = this.state.results
     return(
       <div>
       <div class="container">
+      <div class="has-text-centered" style={{marginBottom:'10px'}}>
+      <img src={pokeball} style={{maxWidth:'70px'}}/>
+      </div>
+      <input class="input" type="text" value={this.state.search} placeholder="Gotta Catch'em all" style={{marginBottom : '10px'}} onChange={this.searchchange} />
       <div class="columns is-multiline">
-      {pokemons.map((item) => <CardList img={item.img} name={item.name} price={item.price}/>)}
+      {results.map((item) => <CardList img={item.img} name={item.name} price={item.price}/>)}
       </div> 
       </div>
       </div>
@@ -87,7 +111,7 @@ class App extends Component {
   render() {
     return (
     <div style={{marginTop:'20px'}}>
-    <PokeCard />
+    <PokeCard pokemons={pokemons} />
     </div>
     );
   }
