@@ -15,16 +15,25 @@ import pokeball from './img/pokeball.svg';
 import './App.css';
 
 
-const pokemons = [{'img':abra,'name':'Abra','price':'30'}
-                 ,{'img':bellsprout,'name':'Bellsprout','price':'60'}
-                 ,{'img':bullbasaur,'name':'Bullbasaur','price':'90'},
-                 {'img':caterpie,'name':'Caterpie','price':'70'},
-                {'img':charmander,'name':'Charmander','price':'40'},
-                {'img':pikachu,'name':'Pikachu','price':'150'},
-                {'img':meow,'name':'Meowth','price':'0'},
-                {'img':pidgey,'name':'Pidgey','price':'20'},
-                {'img':squirtle,'name':'Squirtle','price':'50'}
+const pokemons = [{'img':abra,'name':'Abra','price':'30','tags':'fight'}
+                 ,{'img':bellsprout,'name':'Bellsprout','price':'60','tags':'plant'},
+                 ,{'img':bullbasaur,'name':'Bullbasaur','price':'90','tags':'fight'},
+                 {'img':caterpie,'name':'Caterpie','price':'70','tags':'plant'},
+                {'img':charmander,'name':'Charmander','price':'40','tags':'fire'},
+                {'img':pikachu,'name':'Pikachu','price':'150','tags':'electric'},
+                {'img':meow,'name':'Meowth','price':'0','tags':'normal'},
+                {'img':pidgey,'name':'Pidgey','price':'20','tags':'bug'},
+                {'img':squirtle,'name':'Squirtle','price':'50','tags':'plant'}
                 ]
+
+const tags = ['normal','fight','plant','fire','water','electric','bug']
+
+function Tags(props){
+  const {tag,searchmethod} = props
+  return (
+    <button class="button is-rounded" style={{marginRight : '20px'}} onClick={() => searchmethod(tag)}>{tag}</button>
+    )
+}
 
 
 
@@ -73,12 +82,19 @@ function issearch(searchterm){
   }
 }
 
+function tagsearch(searchterm){
+   return function(item){
+    return item.tags.toLowerCase().includes(searchterm.toLowerCase())
+  }
+}
+
 
 class PokeCard extends Component{
   constructor(props){
      super(props);
      this.state = {results:this.props.pokemons,search:''}
      this.searchchange = this.searchchange.bind(this);
+     this.showtags = this.showtags.bind(this);
   }
 
   searchchange(event){
@@ -86,6 +102,13 @@ class PokeCard extends Component{
     this.setState({
       results:newresult,
       search:event.target.value
+    })
+  }
+
+  showtags(tag){
+    var newresult = pokemons.filter(tagsearch(tag))
+    this.setState({
+      results:newresult
     })
   }
 
@@ -97,7 +120,14 @@ class PokeCard extends Component{
       <div class="has-text-centered" style={{marginBottom:'10px'}}>
       <img src={pokeball} style={{maxWidth:'70px'}}/>
       </div>
+
       <input class="input" type="text" value={this.state.search} placeholder="Gotta Catch'em all" style={{marginBottom : '10px'}} onChange={this.searchchange} />
+      
+
+      <div style={{marginBottom:'20px'}}>
+      {tags.map((item) => <Tags tag={item} searchmethod={this.showtags}/> )}
+      </div>
+
       <div class="columns is-multiline">
       {results.map((item) => <CardList img={item.img} name={item.name} price={item.price}/>)}
       </div> 
