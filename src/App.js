@@ -46,7 +46,7 @@ class MyCard extends Component{
       super(props)
     }
     render(){
-      const {img,name,price} = this.props
+      const {img,name,price,addcart,id} = this.props
       return(
         <div>
         <div className="card" style={{width:'220px'}}>
@@ -56,7 +56,7 @@ class MyCard extends Component{
         <h1 className="title is-4 has-text-centered">{name}</h1>
         <h1 className="subtitle is-4 has-text-centered has-text-success">${price}</h1>
         <div className="has-text-centered" style={{ paddingBottom:'15px',paddingLeft:'10px',paddingRight:'10px',paddingTop:'0px'}}>
-        <button className="button is-fullwidth"> Add to Cart</button>
+        <button className="button is-fullwidth" onClick={() => addcart(id)}> Add to Cart</button>
         </div>
         </div>
         </div>
@@ -71,20 +71,26 @@ class CardList extends Component{
     super(props);
  }
  render(){
-   const {img,name,price} = this.props
+   const {img,name,price,addcart,id} = this.props
    return(
     <div className="column is-3" >
-      <MyCard img={img}  name={name} price={price} />
+      <MyCard img={img}  name={name} price={price} addcart={addcart} id={id}/>
     </div>
    )   
  }
 }
 
-
+//
 function issearch(searchterm){
   return function(item){
     return item.name.toLowerCase().includes(searchterm.toLowerCase())
   }
+}
+
+
+//
+function idsearch(id){
+return pokemons.filter((item) => item.id == id)[0]
 }
 
 //
@@ -98,9 +104,10 @@ function tagsearch(searchterm){
 class PokeCard extends Component{
   constructor(props){
      super(props);
-     this.state = {results:this.props.pokemons,search:'',result_tags:this.props.tags}
+     this.state = {results:this.props.pokemons,search:'',result_tags:this.props.tags,pokecart:this.props.cart}
      this.searchchange = this.searchchange.bind(this);
      this.showtags = this.showtags.bind(this);
+     this.addcart = this.addcart.bind(this);
   }
 
   searchchange(event){
@@ -108,6 +115,15 @@ class PokeCard extends Component{
     this.setState({
       results:newresult,
       search:event.target.value
+    })
+  }
+
+  addcart(item){
+    item = idsearch(item)
+    var itemadd = [...this.state.pokecart,item]
+    cart = itemadd
+    this.setState({
+      pokecart:itemadd
     })
   }
 
@@ -138,16 +154,16 @@ class PokeCard extends Component{
       </div>
       <div className="has-text-right">
       <img src={cartlogo} style={{maxWidth:'30px'}} />
+      {cart.length}
       </div>
       <input className="input" type="text" value={this.state.search} placeholder="Gotta Catch'em all" style={{marginBottom : '10px'}} onChange={this.searchchange} />
-      
 
       <div style={{marginBottom:'20px'}}>
       {tags.map((item) => <Tags tag={item.tag} key={item.id.toString()} searchmethod={this.showtags}/> )}
       </div>
 
       <div className="columns is-multiline">
-      {results.map((item) => <CardList img={item.img} name={item.name} price={item.price} key={item.id.toString()}/>)}
+      {results.map((item) => <CardList img={item.img} name={item.name} price={item.price} addcart={this.addcart} id={item.id} key={item.id.toString()} />)}
       </div> 
       </div>
       </div>
@@ -159,7 +175,7 @@ class App extends Component {
   render() {
     return (
     <div style={{marginTop:'20px'}}>
-    <PokeCard pokemons={pokemons} tags={tags} />
+    <PokeCard pokemons={pokemons} tags={tags} cart={cart} />
     </div>
     );
   }
