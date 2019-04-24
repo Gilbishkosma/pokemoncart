@@ -30,8 +30,6 @@ var cart = []
 const tags = [{id:1,tag:'All'},{id:2,tag:'Normal'},{id:3,tag:'fight'},{id:4,tag:'plant'},{id:5,tag:'fire'},{id:6,tag:'water'},{id:7,tag:'electric'},{id:8,tag:'bug'}]
 
 
-
-//COMPONENT
 function Tags(props){
   const {tag,searchmethod} = props
   return (
@@ -39,19 +37,31 @@ function Tags(props){
     )
 }
 
-//
-function Cartshow(props){
-const {cartvisible,hidecart} = props
-return(
-   <div class={`${cartvisible === true ? '' : 'is-invisible'}`}>
-   <section class="hero is-primary fix-footer">
-  <div class="tags has-addons is-right" style={{padding:'10px'}}>
-  <span class="tag is-danger">Close</span>
-  <a class="tag is-delete" onClick={hidecart}></a>
-</div>
+function Cartimages(props){
+const {item,removepoke} = props
+return (
+ <div className="column is-gapless">
+ <button id={item.img} className="delete is-small" onClick={() => removepoke(item)} />
+ <img src={item.img} style={{maxWidth:'70px',minWidth:'40px'}}/>
+ </div>
+  )
+}
 
-  <div class="hero-body">
-  </div>
+
+function Cartshow(props){
+const {cartvisible,hidecart,removepoke} = props
+return(
+   <div className={`${cartvisible === true ? '' : 'is-invisible'}`}>
+   <section className="hero is-primary fix-footer">
+  <div className="tags has-addons is-right" style={{padding:'10px'}}>
+  <span className="tag is-danger">Close</span>
+  <a className="tag is-delete" onClick={hidecart}></a>
+</div>
+<div className="hero-body">
+<div className="columns is-multiline">
+{cart.map((item) => <Cartimages item={item} key={item.id} removepoke={removepoke} />) }
+</div>
+</div>
 </section>
    </div>
   )
@@ -81,7 +91,7 @@ class MyCard extends Component{
 }
 
 
-//List of card
+
 class CardList extends Component{
   constructor(props){
     super(props);
@@ -96,7 +106,7 @@ class CardList extends Component{
  }
 }
 
-//
+
 function issearch(searchterm){
   return function(item){
     return item.name.toLowerCase().includes(searchterm.toLowerCase())
@@ -104,12 +114,11 @@ function issearch(searchterm){
 }
 
 
-//
+
 function idsearch(id){
 return pokemons.filter((item) => item.id == id)[0]
 }
 
-//
 function tagsearch(searchterm){
    return function(item){
     return item.tags.toLowerCase().includes(searchterm.toLowerCase())
@@ -126,7 +135,9 @@ class PokeCard extends Component{
      this.addcart = this.addcart.bind(this);
      this.showcart = this.showcart.bind(this);
      this.hidecart = this.hidecart.bind(this);
+     this.removepoke = this.removepoke.bind(this);
   }
+
 
   searchchange(event){
     var newresult = copypoke.filter(issearch(event.target.value))
@@ -139,6 +150,18 @@ class PokeCard extends Component{
   addcart(item){
     item = idsearch(item)
     var itemadd = [...this.state.pokecart,item]
+    cart = itemadd
+    this.setState({
+      pokecart:itemadd
+    })
+  }
+
+  removepoke(item){
+    var index = this.state.pokecart.indexOf(item)
+    if(index > -1){
+      this.state.pokecart.splice(index,1)
+    }
+    var itemadd = this.state.pokecart
     cart = itemadd
     this.setState({
       pokecart:itemadd
@@ -195,13 +218,13 @@ class PokeCard extends Component{
       {results.map((item) => <CardList img={item.img} name={item.name} price={item.price} addcart={this.addcart} id={item.id} key={item.id.toString()} />)}
       </div>
       </div>
-      <Cartshow cartvisible={this.state.cartvisible} hidecart={this.hidecart}/>
+      <Cartshow cartvisible={this.state.cartvisible} hidecart={this.hidecart} removepoke={this.removepoke}/>
       </div>
     )
   }
 }
 
-//
+
 class App extends Component {
   render() {
     return (
