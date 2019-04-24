@@ -39,8 +39,24 @@ function Tags(props){
     )
 }
 
+//
+function Cartshow(props){
+const {cartvisible,hidecart} = props
+return(
+   <div class={`${cartvisible === true ? '' : 'is-invisible'}`}>
+   <section class="hero is-primary fix-footer">
+  <div class="tags has-addons is-right" style={{padding:'10px'}}>
+  <span class="tag is-danger">Close</span>
+  <a class="tag is-delete" onClick={hidecart}></a>
+</div>
 
-//CARD
+  <div class="hero-body">
+  </div>
+</section>
+   </div>
+  )
+}
+
 class MyCard extends Component{
     constructor(props){
       super(props)
@@ -104,10 +120,12 @@ function tagsearch(searchterm){
 class PokeCard extends Component{
   constructor(props){
      super(props);
-     this.state = {results:this.props.pokemons,search:'',result_tags:this.props.tags,pokecart:this.props.cart}
+     this.state = {results:this.props.pokemons,search:'',result_tags:this.props.tags,pokecart:this.props.cart,cartvisible:false}
      this.searchchange = this.searchchange.bind(this);
      this.showtags = this.showtags.bind(this);
      this.addcart = this.addcart.bind(this);
+     this.showcart = this.showcart.bind(this);
+     this.hidecart = this.hidecart.bind(this);
   }
 
   searchchange(event){
@@ -124,6 +142,18 @@ class PokeCard extends Component{
     cart = itemadd
     this.setState({
       pokecart:itemadd
+    })
+  }
+
+  showcart(item){
+    this.setState({
+      cartvisible : true
+    })
+  }
+
+  hidecart(item){
+    this.setState({
+      cartvisible : false
     })
   }
 
@@ -147,13 +177,13 @@ class PokeCard extends Component{
   render(){
     var results = this.state.results
     return(
-      <div>
+      <div style={{marginBottom:'200px'}}>
       <div className="container">
       <div className="has-text-centered" style={{marginBottom:'10px'}}>
       <img src={pokeball} style={{maxWidth:'70px'}}/>
       </div>
       <div className="has-text-right">
-      <img src={cartlogo} style={{maxWidth:'30px'}} />
+      <img src={cartlogo} style={{maxWidth:'30px'}} onClick={this.showcart} />
       {cart.length}
       </div>
       <input className="input" type="text" value={this.state.search} placeholder="Gotta Catch'em all" style={{marginBottom : '10px'}} onChange={this.searchchange} />
@@ -161,16 +191,17 @@ class PokeCard extends Component{
       <div style={{marginBottom:'20px'}}>
       {tags.map((item) => <Tags tag={item.tag} key={item.id.toString()} searchmethod={this.showtags}/> )}
       </div>
-
       <div className="columns is-multiline">
       {results.map((item) => <CardList img={item.img} name={item.name} price={item.price} addcart={this.addcart} id={item.id} key={item.id.toString()} />)}
-      </div> 
       </div>
+      </div>
+      <Cartshow cartvisible={this.state.cartvisible} hidecart={this.hidecart}/>
       </div>
     )
   }
 }
 
+//
 class App extends Component {
   render() {
     return (
