@@ -1,5 +1,5 @@
-##Pokemon Cart
-An assignment of [React](https://reactjs.org) from [Hackr.io](https://https://hackr.io/hack-n-learn/).
+## Pokemon Cart
+An assignment of [React](https://reactjs.org) from [Hackr.io](https://hackr.io/hack-n-learn/).
 
 ## Available Scripts
 
