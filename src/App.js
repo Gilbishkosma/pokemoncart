@@ -51,7 +51,7 @@ function Tags(props){
   const selectedTag = selected_tag.tag === tag
   // const tagActivated  = tags.filter(item => item.tag === tag)
   return (
-    <div class="column">
+    <div className="column">
     <button className={`${selectedTag === true ? 'button is-rounded is-primary' : 'button is-rounded'}`}  style={{marginRight : '20px'}} onClick={() => searchmethod(tag)}>{tag}</button>
     </div>
     )
@@ -95,8 +95,8 @@ class MyCard extends Component{
       const {img,name,price,addcart,id,cart} = this.props
       const cardExist = cart.filter((item) => item.id === id ).length > 0;
       return(
-        <div className="is-centered">
-        <div className="card" style={{width:'220px'}}>
+        <div>
+        <div className="card" style={{width:'220px',marginLeft:'10px'}}>
         <div className="card-image" style={{paddingTop:'10px',paddingLeft:'25px',paddingRight:'25px',paddingBottom:'20px'}}>
         <img src={img} />
         </div>
@@ -120,7 +120,7 @@ class CardList extends Component{
  render(){
    const {img,name,price,addcart,id,cart} = this.props
    return(
-    <div className="column is-fullwidth" >
+    <div className="column">
       <MyCard img={img}  name={name} price={price} addcart={addcart} cart={cart} id={id}/>
     </div>
    )   
@@ -224,14 +224,13 @@ class PokeCard extends Component{
   render(){
     var results = this.state.results
     return(
-      
       <div style={{marginBottom:'300px'}}>
-      <section className="section" style={{marginRight:'30px'}}>
+      <section className="section">
       <div className="container">
       <div className="has-text-centered" style={{marginBottom:'10px'}}>
       <img src={pokeball} style={{maxWidth:'70px'}}/>
       </div>
-      <div className="has-text-right is-flex-mobile">
+      <div className="has-text-right">
       <img src={cartlogo} style={{maxWidth:'30px'}} onClick={this.showcart} />
       {cart.length}
       </div>
@@ -259,8 +258,8 @@ class App extends Component {
     return (
     <div style={{marginTop:'20px'}}> 
     <PokeCard pokemons={pokemons} tags={tags} cart={cart} />
-    <footer class="footer">
-    <div class="has-text-right" style={{marginRight:"40px"}}> 
+    <footer className="footer">
+    <div className="has-text-right" style={{marginRight:"40px"}}> 
     <p>Made by <a href="https://github.com/Gilbishkosma/">Gilbish kosma</a>. 
     An assignment of <a href="https://reactjs.org">React</a> from <a href="https://hackr.io/hack-n-learn/">hackr.io</a>.</p>
     </div>
