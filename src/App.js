@@ -16,7 +16,7 @@ import snorlax from './img/snorlax.svg';
 import jigglypuff from './img/jigglypuff.svg';
 import mankey from './img/mankey.svg';
 import duck from './img/psyduck.svg';
-import stardust from './img/stardust.svg';
+import eevee from './img/eevee.svg';
 import tornado from './img/tornado.svg';
 import weedle from './img/weedle.svg';
 import zubat from './img/zubat.svg';
@@ -39,7 +39,8 @@ const pokemons = [{id:1,'img':abra,'name':'Abra','price':'30','tags':'fight'}
                 {id:13,img:duck,name:'Psyduck',price:'20',tags:'normal'},
                 {id:14,img:tornado,name:'Tornado',price:'50',tags:'fight'},
                 {id:15,img:weedle,name:'Weedle',price:'80',tags:'bug'},
-                {id:16,img:zubat,name:'Zubat',price:'30',tags:'fight'}
+                {id:16,img:zubat,name:'Zubat',price:'30',tags:'fight'},
+                {id:17,img:eevee,name:'eevee',price:'50',tags:'normal'}
                 ]
 var copypoke = [...pokemons]
 var cart = []
