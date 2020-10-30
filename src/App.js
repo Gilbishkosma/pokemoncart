@@ -22,6 +22,7 @@ import weedle from './img/weedle.svg';
 import zubat from './img/zubat.svg';
 import venonat from './img/venonat.svg';
 import gastly from './img/gastly.svg';
+import gengar from './img/gengar.svg';
 
 
 // Import components
@@ -48,7 +49,8 @@ const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': '
 { id: 16, img: zubat, name: 'Zubat', price: '30', tags: 'fight' },
 { id: 17, img: eevee, name: 'eevee', price: '50', tags: 'normal' },
 { id: 18, img: venonat, name: 'Venonat', price: '20', tags: 'bug' },
-{ id: 19, img: gastly, name: 'Gastly', price: '20', tags: 'ghost' }
+{ id: 19, img: gastly, name: 'Gastly', price: '20', tags: 'ghost' },
+{ id: 19, img: gengar, name: 'Gengar', price: '7.5', tags: 'gengar' }
 ]
 var copypoke = [...pokemons]
 var cart = []
