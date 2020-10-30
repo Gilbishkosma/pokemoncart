@@ -20,6 +20,7 @@ import eevee from './img/eevee.svg';
 import tornado from './img/tornado.svg';
 import weedle from './img/weedle.svg';
 import zubat from './img/zubat.svg';
+import gastly from './img/gastly.svg';
 
 // Import components
 import Tags from './components/Tags'
@@ -43,11 +44,12 @@ const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': '
 { id: 14, img: tornado, name: 'Tornado', price: '50', tags: 'fight' },
 { id: 15, img: weedle, name: 'Weedle', price: '80', tags: 'bug' },
 { id: 16, img: zubat, name: 'Zubat', price: '30', tags: 'fight' },
-{ id: 17, img: eevee, name: 'eevee', price: '50', tags: 'normal' }
+{ id: 17, img: eevee, name: 'eevee', price: '50', tags: 'normal' },
+{ id: 18, img: gastly, name: 'Gastly', price: '20', tags: 'ghost' }
 ]
 var copypoke = [...pokemons]
 var cart = []
-const tags = [{ id: 1, tag: 'All' }, { id: 2, tag: 'Normal' }, { id: 3, tag: 'fight' }, { id: 4, tag: 'plant' }, { id: 5, tag: 'fire' }, { id: 6, tag: 'water' }, { id: 7, tag: 'electric' }, { id: 8, tag: 'bug' }]
+const tags = [{ id: 1, tag: 'All' }, { id: 2, tag: 'Normal' }, { id: 3, tag: 'fight' }, { id: 4, tag: 'plant' }, { id: 5, tag: 'fire' }, { id: 6, tag: 'water' }, { id: 7, tag: 'electric' }, { id: 8, tag: 'bug' }, {id: 9, tag: 'ghost'} ]
 
 
 
