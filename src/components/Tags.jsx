@@ -1,3 +1,5 @@
+import React from 'react'
+
 function Tags(props) {
     const { tag, searchmethod, tags, selected_tag } = props
     const selectedTag = selected_tag.tag === tag
