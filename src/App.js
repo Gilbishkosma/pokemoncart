@@ -50,7 +50,7 @@ const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': '
 { id: 17, img: eevee, name: 'eevee', price: '50', tags: 'normal' },
 { id: 18, img: venonat, name: 'Venonat', price: '20', tags: 'bug' },
 { id: 19, img: gastly, name: 'Gastly', price: '20', tags: 'ghost' },
-{ id: 19, img: gengar, name: 'Gengar', price: '7.5', tags: 'electric' }
+{ id: 20, img: gengar, name: 'Gengar', price: '7.5', tags: 'electric' }
 ]
 var copypoke = [...pokemons]
 var cart = []
