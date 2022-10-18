@@ -31,11 +31,11 @@ import './App.css';
 
 const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': 'fight' },
 { id: 2, 'img': bellsprout, 'name': 'Bellsprout', 'price': '60', 'tags': 'plant' },
-{ id: 3, 'img': bullbasaur, 'name': 'Bullbasaur', 'price': '90', 'tags': 'plant' },
+{ id: 3, 'img': bullbasaur, 'name': 'Bulbasaur', 'price': '90', 'tags': 'plant' },
 { id: 4, 'img': caterpie, 'name': 'Caterpie', 'price': '70', 'tags': 'plant' },
 { id: 5, 'img': charmander, 'name': 'Charmander', 'price': '40', 'tags': 'fire' },
 { id: 6, 'img': pikachu, 'name': 'Pikachu', 'price': '150', 'tags': 'electric' },
-{ id: 7, 'img': meow, 'name': 'Meowth', 'price': '0', 'tags': 'normal' },
+{ id: 7, 'img': meow, 'name': 'Meowth', 'price': '50', 'tags': 'normal' },
 { id: 8, 'img': pidgey, 'name': 'Pidgey', 'price': '20', 'tags': 'bug' },
 { id: 9, 'img': squirtle, 'name': 'Squirtle', 'price': '50', 'tags': 'water' },
 { id: 10, 'img': snorlax, name: 'Snorlax', price: '60', tags: 'water' },
@@ -52,7 +52,7 @@ const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': '
 ]
 var copypoke = [...pokemons]
 var cart = []
-const tags = [{ id: 1, tag: 'All' }, { id: 2, tag: 'Normal' }, { id: 3, tag: 'fight' }, { id: 4, tag: 'plant' }, { id: 5, tag: 'fire' }, { id: 6, tag: 'water' }, { id: 7, tag: 'electric' }, { id: 8, tag: 'bug' }, { id: 9, tag: 'ghost' }]
+const tags = [{ id: 1, tag: 'All' }, { id: 2, tag: 'normal' }, { id: 3, tag: 'fight' }, { id: 4, tag: 'plant' }, { id: 5, tag: 'fire' }, { id: 6, tag: 'water' }, { id: 7, tag: 'electric' }, { id: 8, tag: 'bug' }, { id: 9, tag: 'ghost' }]
 
 
 
