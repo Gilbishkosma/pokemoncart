@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import cartlogo from './img/shopping-cart.svg';
-import action from './img/action.svg';
 import abra from './img/abra.svg';
 import bellsprout from './img/bellsprout.svg';
 import bullbasaur from './img/bullbasaur.svg';
@@ -30,9 +28,9 @@ import Tags from './components/Tags'
 import './App.css';
 
 
-const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': 'fight' }
-  , { id: 2, 'img': bellsprout, 'name': 'Bellsprout', 'price': '60', 'tags': 'plant' },
-  , { id: 3, 'img': bullbasaur, 'name': 'Bullbasaur', 'price': '90', 'tags': 'plant' },
+const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': 'fight' },
+{ id: 2, 'img': bellsprout, 'name': 'Bellsprout', 'price': '60', 'tags': 'plant' },
+{ id: 3, 'img': bullbasaur, 'name': 'Bullbasaur', 'price': '90', 'tags': 'plant' },
 { id: 4, 'img': caterpie, 'name': 'Caterpie', 'price': '70', 'tags': 'plant' },
 { id: 5, 'img': charmander, 'name': 'Charmander', 'price': '40', 'tags': 'fire' },
 { id: 6, 'img': pikachu, 'name': 'Pikachu', 'price': '150', 'tags': 'electric' },
@@ -52,221 +50,215 @@ const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': '
 ]
 var copypoke = [...pokemons]
 var cart = []
-const tags = [{ id: 1, tag: 'All' }, { id: 2, tag: 'Normal' }, { id: 3, tag: 'fight' }, { id: 4, tag: 'plant' }, { id: 5, tag: 'fire' }, { id: 6, tag: 'water' }, { id: 7, tag: 'electric' }, { id: 8, tag: 'bug' }, {id: 9, tag: 'ghost'} ]
+const tags = [{ id: 1, tag: 'All' }, { id: 2, tag: 'Normal' }, { id: 3, tag: 'fight' }, { id: 4, tag: 'plant' }, { id: 5, tag: 'fire' }, { id: 6, tag: 'water' }, { id: 7, tag: 'electric' }, { id: 8, tag: 'bug' }, { id: 9, tag: 'ghost' }]
 
 
 
 
 function Cartimages(props) {
-  const { item, removepoke } = props
-  return (
-    <div className="column is-gapless">
-      <button id={item.img} className="delete is-small" onClick={() => removepoke(item)} />
-      <img src={item.img} style={{ maxWidth: '70px' }} />
-    </div>
-  )
+    const { item, removepoke } = props
+    return (
+        <div className="column is-gapless">
+            <button id={item.img} className="delete is-small" onClick={() => removepoke(item)} />
+            <img src={item.img} style={{ maxWidth: '70px' }} alt='cart' />
+        </div>
+    )
 }
 
 
 function Cartshow(props) {
-  const { cartvisible, hidecart, removepoke } = props
-  return (
-    <div className={`${cartvisible === true ? '' : 'is-invisible'}`}>
-      <section className="hero is-primary fix-footer">
-        <div className="tags has-addons is-right" style={{ padding: '2px' }}>
-          <span className="tag is-danger">Close</span>
-          <a className="tag is-delete" onClick={hidecart}></a>
+    const { cartvisible, hidecart, removepoke } = props
+    return (
+        <div className={`${cartvisible === true ? '' : 'is-invisible'}`}>
+            <section className="hero is-primary fix-footer">
+                <div className="tags has-addons is-right" style={{ padding: '2px' }}>
+                    <span className="tag is-danger">Close</span>
+                    <i className="tag is-delete" onClick={hidecart}></i>
+                </div>
+                <div className="hero-body">
+                    <div className="columns is-multiline is-mobile">
+                        {cart.map((item) => <Cartimages item={item} key={item.id} removepoke={removepoke} />)}
+                    </div>
+                </div>
+            </section>
         </div>
-        <div className="hero-body">
-          <div className="columns is-multiline is-mobile">
-            {cart.map((item) => <Cartimages item={item} key={item.id} removepoke={removepoke} />)}
-          </div>
-        </div>
-      </section>
-    </div>
-  )
+    )
 }
 
 class MyCard extends Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    const { img, name, price, addcart, id, cart } = this.props
-    const cardExist = cart.filter((item) => item.id === id).length > 0;
-    return (
-      <div>
-        <div className="card" style={{ width: '220px', marginLeft: '10px' }}>
-          <div className="card-image" style={{ paddingTop: '10px', paddingLeft: '25px', paddingRight: '25px', paddingBottom: '20px' }}>
-            <img src={img} />
-          </div>
-          <h1 className="title is-4 has-text-centered">{name}</h1>
-          <h1 className="subtitle is-4 has-text-centered has-text-success">${price}</h1>
-          <div className="has-text-centered" style={{ paddingBottom: '15px', paddingLeft: '10px', paddingRight: '10px', paddingTop: '0px' }}>
-            <button className={`${cardExist === true ? 'button is-fullwidth is-info' : 'button is-fullwidth'}`} onClick={() => addcart(id)} disabled={cardExist}>{cardExist ? 'Added' : 'Add to cart'}</button>
-          </div>
-        </div>
-      </div>
-    )
-  }
+    render() {
+        const { img, name, price, addcart, id, cart } = this.props
+        const cardExist = cart.filter((item) => item.id === id).length > 0;
+        return (
+            <div>
+                <div className="card" style={{ width: '220px', marginLeft: '10px' }}>
+                    <div className="card-image" style={{ paddingTop: '10px', paddingLeft: '25px', paddingRight: '25px', paddingBottom: '20px' }}>
+                        <img src={img} alt='img' />
+                    </div>
+                    <h1 className="title is-4 has-text-centered">{name}</h1>
+                    <h1 className="subtitle is-4 has-text-centered has-text-success">${price}</h1>
+                    <div className="has-text-centered" style={{ paddingBottom: '15px', paddingLeft: '10px', paddingRight: '10px', paddingTop: '0px' }}>
+                        <button className={`${cardExist === true ? 'button is-fullwidth is-info' : 'button is-fullwidth'}`} onClick={() => addcart(id)} disabled={cardExist}>{cardExist ? 'Added' : 'Add to cart'}</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
 
 
 class CardList extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const { img, name, price, addcart, id, cart } = this.props
-    return (
-      <div className="column">
-        <MyCard img={img} name={name} price={price} addcart={addcart} cart={cart} id={id} />
-      </div>
-    )
-  }
+    render() {
+        const { img, name, price, addcart, id, cart } = this.props
+        return (
+            <div className="column">
+                <MyCard img={img} name={name} price={price} addcart={addcart} cart={cart} id={id} />
+            </div>
+        )
+    }
 }
 
 
 function issearch(searchterm) {
-  return function (item) {
-    return item.name.toLowerCase().includes(searchterm.toLowerCase())
-  }
+    return function (item) {
+        return item.name.toLowerCase().includes(searchterm.toLowerCase())
+    }
 }
 
 
 
 function idsearch(id) {
-  return pokemons.filter((item) => item.id == id)[0]
+    return pokemons.filter((item) => item.id == id)[0]
 }
 
 function tagsearch(searchterm) {
-  return function (item) {
-    return item.tags.toLowerCase().includes(searchterm.toLowerCase())
-  }
+    return function (item) {
+        return item.tags.toLowerCase().includes(searchterm.toLowerCase())
+    }
 }
 
 
 class PokeCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { results: this.props.pokemons, search: '', result_tags: this.props.tags, selected_tag: tags[0], pokecart: this.props.cart, cartvisible: false }
-    this.searchchange = this.searchchange.bind(this);
-    this.showtags = this.showtags.bind(this);
-    this.addcart = this.addcart.bind(this);
-    this.showcart = this.showcart.bind(this);
-    this.hidecart = this.hidecart.bind(this);
-    this.removepoke = this.removepoke.bind(this);
-  }
-
-
-  searchchange(event) {
-    var newresult = copypoke.filter(issearch(event.target.value))
-    this.setState({
-      results: newresult,
-      search: event.target.value
-    })
-  }
-
-  addcart(item) {
-    item = idsearch(item)
-    var itemadd = [...this.state.pokecart, item]
-    cart = itemadd
-    this.setState({
-      pokecart: itemadd
-    })
-  }
-
-  removepoke(item) {
-    var index = this.state.pokecart.indexOf(item)
-    if (index > -1) {
-      this.state.pokecart.splice(index, 1)
+    constructor(props) {
+        super(props);
+        this.state = { results: this.props.pokemons, search: '', result_tags: this.props.tags, selected_tag: tags[0], pokecart: this.props.cart, cartvisible: false }
+        this.searchchange = this.searchchange.bind(this);
+        this.showtags = this.showtags.bind(this);
+        this.addcart = this.addcart.bind(this);
+        this.showcart = this.showcart.bind(this);
+        this.hidecart = this.hidecart.bind(this);
+        this.removepoke = this.removepoke.bind(this);
     }
-    var itemadd = this.state.pokecart
-    cart = itemadd
-    this.setState({
-      pokecart: itemadd
-    })
-  }
 
-  showcart(item) {
-    this.setState({
-      cartvisible: true
-    })
-  }
 
-  hidecart(item) {
-    this.setState({
-      cartvisible: false
-    })
-  }
-
-  showtags(tag) {
-    if (tag === 'All') {
-      copypoke = pokemons
-      var newresult = pokemons
-      this.setState({
-        results: newresult,
-        selected_tag: tags[0]
-      })
+    searchchange(event) {
+        var newresult = copypoke.filter(issearch(event.target.value))
+        this.setState({
+            results: newresult,
+            search: event.target.value
+        })
     }
-    else {
-      var newresult = pokemons.filter(tagsearch(tag))
-      var selected = tags.filter(item => item.tag == tag)[0]
-      copypoke = newresult
-      this.setState({
-        results: newresult,
-        selected_tag: selected
-      })
-    }
-  }
 
-  render() {
-    var results = this.state.results
-    return (
-      <div style={{ marginBottom: '300px' }}>
-        <section className="section">
-          <div className="container">
-            <div className="has-text-centered" style={{ marginBottom: '10px' }}>
-              <img src={pokeball} style={{ maxWidth: '70px' }} />
+    addcart(item) {
+        item = idsearch(item)
+        var itemadd = [...this.state.pokecart, item]
+        cart = itemadd
+        this.setState({
+            pokecart: itemadd
+        })
+    }
+
+    removepoke(item) {
+        var index = this.state.pokecart.indexOf(item)
+        if (index > -1) {
+            this.state.pokecart.splice(index, 1)
+        }
+        var itemadd = this.state.pokecart
+        cart = itemadd
+        this.setState({
+            pokecart: itemadd
+        })
+    }
+
+    showcart(item) {
+        this.setState({
+            cartvisible: true
+        })
+    }
+
+    hidecart(item) {
+        this.setState({
+            cartvisible: false
+        })
+    }
+
+    showtags(tag) {
+        if (tag === 'All') {
+            copypoke = pokemons
+            var newresult = pokemons
+            this.setState({
+                results: newresult,
+                selected_tag: tags[0]
+            })
+        }
+        else {
+            var newresult = pokemons.filter(tagsearch(tag))
+            var selected = tags.filter(item => item.tag == tag)[0]
+            copypoke = newresult
+            this.setState({
+                results: newresult,
+                selected_tag: selected
+            })
+        }
+    }
+
+    render() {
+        var results = this.state.results
+        return (
+            <div style={{ marginBottom: '300px' }}>
+                <section className="section">
+                    <div className="container">
+                        <div className="has-text-centered" style={{ marginBottom: '10px' }}>
+                            <img src={pokeball} style={{ maxWidth: '70px' }} />
+                        </div>
+                        <div className="has-text-right">
+                            <img src={cartlogo} style={{ maxWidth: '30px' }} onClick={this.showcart} />
+                            {cart.length}
+                        </div>
+                        <br />
+                        <div className="control">
+                            <input className="input" type="text" value={this.state.search} placeholder="Gotta Catch'em all" style={{ marginBottom: '10px' }} onChange={this.searchchange} />
+                        </div>
+                        <div className="columns is-multiline is-mobile" style={{ marginBottom: '20px' }}>
+                            {tags.map((item) => <Tags tag={item.tag} tags={tags} key={item.id.toString()} selected_tag={this.state.selected_tag} searchmethod={this.showtags} />)}
+                        </div>
+                        <div className="columns is-multiline is-mobile">
+                            {results.map((item) => <CardList img={item.img} cart={this.state.pokecart} name={item.name} price={item.price} addcart={this.addcart} id={item.id} key={item.id.toString()} />)}
+                        </div>
+                    </div>
+                </section>
+                <Cartshow cartvisible={this.state.cartvisible} hidecart={this.hidecart} removepoke={this.removepoke} />
             </div>
-            <div className="has-text-right">
-              <img src={cartlogo} style={{ maxWidth: '30px' }} onClick={this.showcart} />
-              {cart.length}
-            </div>
-            <br />
-            <div className="control">
-              <input className="input" type="text" value={this.state.search} placeholder="Gotta Catch'em all" style={{ marginBottom: '10px' }} onChange={this.searchchange} />
-            </div>
-            <div className="columns is-multiline is-mobile" style={{ marginBottom: '20px' }}>
-              {tags.map((item) => <Tags tag={item.tag} tags={tags} key={item.id.toString()} selected_tag={this.state.selected_tag} searchmethod={this.showtags} />)}
-            </div>
-            <div className="columns is-multiline is-mobile">
-              {results.map((item) => <CardList img={item.img} cart={this.state.pokecart} name={item.name} price={item.price} addcart={this.addcart} id={item.id} key={item.id.toString()} />)}
-            </div>
-          </div>
-        </section>
-        <Cartshow cartvisible={this.state.cartvisible} hidecart={this.hidecart} removepoke={this.removepoke} />
-      </div>
-    )
-  }
+        )
+    }
 }
 
 
 class App extends Component {
-  render() {
-    return (
-      <div style={{ marginTop: '20px' }}>
-        <PokeCard pokemons={pokemons} tags={tags} cart={cart} />
-        <footer className="footer">
-          <div className="has-text-right" style={{ marginRight: "40px" }}>
-            <p>Made by <a href="https://github.com/Gilbishkosma/">Gilbish kosma</a>.
-    An assignment of <a href="https://reactjs.org">React</a> from <a href="https://hackr.io/hack-n-learn/">hackr.io</a>.</p>
-          </div>
-        </footer>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div style={{ marginTop: '20px' }}>
+                <PokeCard pokemons={pokemons} tags={tags} cart={cart} />
+                <footer className="footer">
+                    <div className="has-text-right" style={{ marginRight: "40px" }}>
+                        <p>Made by <a href="https://github.com/Gilbishkosma/">Gilbish kosma</a>.
+                            An assignment of <a href="https://reactjs.org">React</a> from <a href="https://hackr.io/hack-n-learn/">hackr.io</a>.</p>
+                    </div>
+                </footer>
+            </div>
+        );
+    }
 }
 
 export default App;
