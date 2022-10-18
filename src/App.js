@@ -35,7 +35,7 @@ const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': '
 { id: 4, 'img': caterpie, 'name': 'Caterpie', 'price': '70', 'tags': 'plant' },
 { id: 5, 'img': charmander, 'name': 'Charmander', 'price': '40', 'tags': 'fire' },
 { id: 6, 'img': pikachu, 'name': 'Pikachu', 'price': '150', 'tags': 'electric' },
-{ id: 7, 'img': meow, 'name': 'Meowth', 'price': '0', 'tags': 'normal' },
+{ id: 7, 'img': meow, 'name': 'Meowth', 'price': '50', 'tags': 'normal' },
 { id: 8, 'img': pidgey, 'name': 'Pidgey', 'price': '20', 'tags': 'bug' },
 { id: 9, 'img': squirtle, 'name': 'Squirtle', 'price': '50', 'tags': 'water' },
 { id: 10, 'img': snorlax, name: 'Snorlax', price: '60', tags: 'water' },
