@@ -32,7 +32,7 @@ import './App.css';
 const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': 'fight' },
 { id: 2, 'img': bellsprout, 'name': 'Bellsprout', 'price': '60', 'tags': 'plant' },
 { id: 3, 'img': bullbasaur, 'name': 'Bullbasaur', 'price': '90', 'tags': 'plant' },
-{ id: 4, 'img': caterpie, 'name': 'Caterpie', 'price': '70', 'tags': 'plant' },
+{ id: 4, 'img': caterpie, 'name': 'Caterpie', 'price': '70', 'tags': 'bug' },
 { id: 5, 'img': charmander, 'name': 'Charmander', 'price': '40', 'tags': 'fire' },
 { id: 6, 'img': pikachu, 'name': 'Pikachu', 'price': '150', 'tags': 'electric' },
 { id: 7, 'img': meow, 'name': 'Meowth', 'price': '50', 'tags': 'normal' },
@@ -48,7 +48,7 @@ const pokemons = [{ id: 1, 'img': abra, 'name': 'Abra', 'price': '30', 'tags': '
 { id: 17, img: eevee, name: 'eevee', price: '50', tags: 'normal' },
 { id: 18, img: venonat, name: 'Venonat', price: '20', tags: 'bug' },
 { id: 19, img: gastly, name: 'Gastly', price: '20', tags: 'ghost' },
-{ id: 20, img: gengar, name: 'Gengar', price: '7.5', tags: 'electric' }
+{ id: 20, img: gengar, name: 'Gengar', price: '7.5', tags: 'ghost' }
 ]
 var copypoke = [...pokemons]
 var cart = []
