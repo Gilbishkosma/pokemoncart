@@ -6,7 +6,7 @@ function Tags(props) {
     // const tagActivated  = tags.filter(item => item.tag === tag)
     return (
         <div className="column">
-            <button className={`${selectedTag === true ? 'button is-rounded is-primary' : 'button is-rounded'}`} style={{ marginRight: '20px' }} onClick={() => searchmethod(tag)}>{tag}</button>
+            <button className={`${selectedTag ? 'button is-rounded is-primary' : 'button is-rounded'}`} style={{ marginRight: '20px' }} onClick={() => searchmethod(tag)}>{tag}</button>
         </div>
     )
 }
